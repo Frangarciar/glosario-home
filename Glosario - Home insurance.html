@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario Interactivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .contenedor {
+            display: flex;
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .barra-lateral {
+            width: 30%;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            height: 600px;
+        }
+        .contenido {
+            width: 70%;
+            padding: 20px;
+        }
+        .termino {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .termino:hover, .activo {
+            background-color: #ff8800;
+            color: #fff;
+        }
+        .buscador {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h1 {
+            color: #ff8800;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="barra-lateral">
+        <input type="text" class="buscador" placeholder="Buscar..." oninput="filtrarTerminos()">
+        <div class="termino activo" onclick="mostrarDefinicion(this, 'Seguro por acto fortuito', 'This describes an event beyond our control, such as a natural disaster. Depending on the policy, acts of god insurances may fall under the force majeure clauses.')">Act of God insurance</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Valor real en efectivo', 'Actual cash value insurance covers homes for their cost plus the full value of their contents after deducting depreciation.')">Actual cash value (ACV)</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Cobertura contra todo riesgo', 'This will cover all risks, unless explicitly excluded from the home insurance policy.')">All perils</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Valoración o tasación', 'It determines the value of an item.')">Appraisal</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Comprobante de cobertura', 'A home insurance binder is temporary proof of coverage of the home insurance policy until the formal policy is issued.')">Binder</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Cobertura A', 'This is also known as the building or dwelling.')">Coverage A</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Deducible', 'This is the amount someone has to pay out of pocket before the insurance company begins to cover the cost of repairs.')">Deductible</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Estructuras privadas independientes', 'These are structures separated from your home but still part of your property.')">Detached private structures</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Vivienda', 'A dwelling is your home and any attached structures, permanent outdoor equipment, or any materials currently used to build or repair your home.')">Dwelling</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Seguro contra terremotos', 'Earthquake insurance covers damage caused by an earthquake.')">Earthquake insurance</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Respaldo', 'When something is added or modified in your current policy.')">Endorsement</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Prima del seguro del hogar', 'This is the amount you have to pay to buy insurance for your home.')">Home insurance premium</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Indemnización', 'If you suffer a loss covered by the insurance, the insurer would compensate you.')">Indemnity</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Cobertura de gastos de vida', 'Coverage paying accommodation in the event of a claim and you are unable to live in your home temporarily.')">Living expenses coverage</div>
+        <div class="termino" onclick="mostrarDefinicion(this, 'Pérdida de uso', 'Reimbursement for expenses incurred while unable to live in your home due to insured loss.')">Loss of use</div>
+    </div>
+    <div class="contenido">
+        <h1 id="titulo">Seguro por acto fortuito</h1>
+        <p id="descripcion">This describes an event beyond our control, such as a natural disaster. Depending on the policy, acts of god insurances may fall under the force majeure clauses.</p>
+    </div>
+</div>
+
+<script>
+    function mostrarDefinicion(elemento, titulo, descripcion) {
+        document.querySelectorAll('.termino').forEach(el => el.classList.remove('activo'));
+        elemento.classList.add('activo');
+        document.getElementById('titulo').innerText = titulo;
+        document.getElementById('descripcion').innerText = descripcion;
+    }
+
+    function filtrarTerminos() {
+        let filtro = document.querySelector('.buscador').value.toLowerCase();
+        document.querySelectorAll('.termino').forEach(function(termino) {
+            if (termino.innerText.toLowerCase().includes(filtro)) {
+                termino.style.display = '';
+            } else {
+                termino.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
